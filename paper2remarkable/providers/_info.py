@@ -47,21 +47,21 @@ class Informer:
 
         # we assume that the list of authors is surname only.
         if len(self.authors) > 3:
-            authors = self.authors[0] + "_et_al"
+            authors = self.authors[0] + "-et-al"
         else:
-            authors = "_".join(self.authors)
-        authors = authors.replace(" ", "_")
+            authors = "-".join(self.authors)
+        authors = authors.replace(" ", "-")
         authors = clean_string(authors)
 
         # Clean the title and make it titlecase
         title = clean_string(self.title)
         title = titlecase.titlecase(title)
-        title = title.replace(" ", "_")
+        title = title.replace(" ", "-")
         title = clean_string(title)
 
         year = str(self.year)
 
-        name = authors + "_-_" + title + "_" + year + ".pdf"
+        name = f"{authors}-{year}.{title}.pdf"
         name = unidecode.unidecode(name)
         logger.info("Created filename: %s" % name)
         return name
